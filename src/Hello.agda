@@ -1,7 +1,7 @@
 module Hello where
 
-import IO.Primitive    as P
 import Foreign.Haskell as H
+import IO.Primitive    as P
 
 open import Coinduction
 open import Data.Unit
