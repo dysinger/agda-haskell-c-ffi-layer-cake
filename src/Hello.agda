@@ -14,9 +14,9 @@ open import IO
 hello : IO ⊤
 hello = putStrLn "hello (agda)"
 
--------------------
--- FFI (Haskell) --
--------------------
+-----------------------------------------
+-- FFI to Haskell & to C (via Haskell) --
+-----------------------------------------
 
 {-# IMPORT Hello #-}
 
