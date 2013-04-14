@@ -11,8 +11,8 @@ open import IO
 -- Agda --
 ----------
 
-hello : IO ⊤
-hello = putStrLn "hello (agda)"
+agHello : IO ⊤
+agHello = putStrLn "hello (agda)"
 
 -----------------------------------------
 -- FFI to Haskell & to C (via Haskell) --
@@ -40,5 +40,8 @@ _&_ x₁ x₂ = ♯ x₁ >> ♯ x₂
 -- Main --
 ----------
 
+hello : IO H.Unit
+hello = agHello & lift cHello & lift hsHello
+
 main : P.IO H.Unit
-main = run (♯ (♯ hello >> ♯ lift hsHello) >> ♯ lift cHello)
+main = run hello
