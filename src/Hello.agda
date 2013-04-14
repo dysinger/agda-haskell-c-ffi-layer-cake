@@ -27,6 +27,15 @@ postulate
 {-# COMPILED hsHello Hello.hsHello #-}
 {-# COMPILED cHello  Hello.cHello  #-}
 
+-------------
+-- Helpers --
+-------------
+
+infixl 1 _&_
+
+_&_ : ∀ {a} {A : Set a} {B : Set a} → (m₁ : IO A) → (m₂ : IO B) → IO B
+_&_ x₁ x₂ = ♯ x₁ >> ♯ x₂
+
 ----------
 -- Main --
 ----------
