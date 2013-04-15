@@ -1,7 +1,7 @@
 module Hello where
 
-import Foreign.Haskell as H
-import IO.Primitive    as P
+import Foreign.Haskell as Hask
+import IO.Primitive    as Prim
 
 open import Coinduction
 open import Data.Unit
@@ -21,8 +21,8 @@ agHello = putStrLn "hello (agda)"
 {-# IMPORT Hello #-}
 
 postulate
-  hsHello : P.IO H.Unit
-  cHello  : P.IO H.Unit
+  hsHello : Prim.IO Hask.Unit
+  cHello  : Prim.IO Hask.Unit
 
 {-# COMPILED hsHello Hello.hsHello #-}
 {-# COMPILED cHello  Hello.cHello  #-}
@@ -34,14 +34,14 @@ postulate
 infixl 1 _&_
 
 _&_ : ∀ {a} {A : Set a} {B : Set a} → IO A → IO B → IO B
-_&_ x₁ x₂ = ♯ x₁ >> ♯ x₂
+_&_ m₁ m₂ = ♯ m₁ >> ♯ m₂
 
 ----------
 -- Main --
 ----------
 
-hello : IO H.Unit
+hello : IO Hask.Unit
 hello = agHello & lift cHello & lift hsHello
 
-main : P.IO H.Unit
+main : Prim.IO Hask.Unit
 main = run hello
