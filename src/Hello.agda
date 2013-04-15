@@ -33,7 +33,7 @@ postulate
 
 infixl 1 _&_
 
-_&_ : ∀ {a} {A : Set a} {B : Set a} → (m₁ : IO A) → (m₂ : IO B) → IO B
+_&_ : ∀ {a} {A : Set a} {B : Set a} → IO A → IO B → IO B
 _&_ x₁ x₂ = ♯ x₁ >> ♯ x₂
 
 ----------
